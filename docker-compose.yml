@@ -1,0 +1,36 @@
+services:
+  proton:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: proton-web-server:latest
+    container_name: proton-dev
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount public directory for live development
+      - ./public:/var/www/html:ro
+      # Mount config file for live updates (commented out for initial testing)
+      # - ./conf/proton.conf.example:/etc/proton/proton.conf:ro
+    environment:
+      # Worker configuration
+      - PROTON_WORKERS=4
+      # Log level: debug, info, warn, error
+      - PROTON_LOG_LEVEL=info
+      # Timezone
+      - TZ=UTC
+      # Quiet entrypoint logs (set to 1 to disable)
+      # - PROTON_ENTRYPOINT_QUIET_LOGS=
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - proton-network
+
+networks:
+  proton-network:
+    driver: bridge

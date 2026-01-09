@@ -1,0 +1,50 @@
+services:
+  nginx-lb:
+    image: nginx:alpine
+    container_name: proton-nginx-lb
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-lb.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - proton
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    restart: always
+    networks:
+      - proton-network
+
+  proton:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: proton-web-server:latest
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    environment:
+      - PROTON_WORKERS=2
+      - PROTON_LOG_LEVEL=warn
+      - TZ=UTC
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: always
+    networks:
+      - proton-network
+
+networks:
+  proton-network:
+    driver: bridge

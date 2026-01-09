@@ -1,0 +1,31 @@
+# Proton Web Server Configuration
+# NGINX-style configuration syntax
+
+# Worker process configuration
+worker_processes auto;
+error_log stderr;
+
+# Event configuration
+events {
+    worker_connections 1024;
+}
+
+# HTTP server configuration
+http {
+    access_log /dev/null;
+
+    # Main server block
+    server {
+        listen 8080;
+        server_name localhost;
+
+        # Document root for static files
+        root /var/www/html;
+
+        # Default location - serve static files
+        location / {
+            # Static files will be served from /var/www/html/
+            index index.html index.htm;
+        }
+    }
+}
