@@ -1,7 +1,7 @@
 # Proton Web Server - Docker Edition
 
 **High-Performance Event-Driven Web Server in Docker**
-![DALL·E 2026-01-08 15 29 27 - High‑quality modern vector logo for an open‑source infrastructure project named "Proton Web Server" with CLEAR, LEGIBLE text  Combine a minimalist abs](https://github.com/user-attachments/assets/f82660d8-4b8c-4119-838a-cd6704c547cb)
+![DALL·E 2026-01-09 16 34 08 - A modern, geometric tech logo illustration based on the provided Proton Web Server image  Preserve the dark background, teal and cyan color palette, g](https://github.com/user-attachments/assets/ddb451bc-d063-4409-9033-4a0bf7ab3599)
 
 Production-ready Docker images for Proton Web Server - a lightweight, high-performance HTTP server built in C.
 
