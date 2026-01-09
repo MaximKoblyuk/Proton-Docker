@@ -1,0 +1,65 @@
+# Git files
+.git
+.github
+.gitignore
+.gitattributes
+
+# Documentation (keep essential ones)
+*.md
+!README.md
+!DOCKER.md
+!BUILD.md
+!QUICKSTART.md
+
+# Build artifacts
+build/
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+
+# Logs
+*.log
+logs/
+*.tmp
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# WSL specific
+.wslconfig
+
+# Testing
+test/
+tests/
+*.test
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+.circleci/
+
+# Docker files (don't need these in build context)
+docker-compose.override.yml
+.dockerignore
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Temporary files
+tmp/
+temp/
+*.tmp
